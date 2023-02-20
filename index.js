@@ -8,6 +8,9 @@ const PORT = process.env.PORT||4000;
 const authRouter = require("./routes/authroute")
 const productRouter = require("./routes/productRoute")
 const blogRouter = require("./routes/blogRoute")
+const catagoryRouter = require("./routes/prodCatagoryRoute")
+const blogCatagoryRouter = require("./routes/blogCatagoryRoute")
+const brandRouter = require("./routes/brandRoute")
 const cookieParser = require('cookie-parser');
 const morgan = require("morgan");
 dbConnect();
@@ -18,6 +21,9 @@ app.use(cookieParser());
 app.use("/api/user",authRouter);
 app.use("/api/product",productRouter);
 app.use("/api/blog",blogRouter);
+app.use("/api/catagory",catagoryRouter);
+app.use("/api/blogcatagory",blogCatagoryRouter);
+app.use("/api/brand",brandRouter);
 
 app.use(notFound);
 app.use(errorHandler);
