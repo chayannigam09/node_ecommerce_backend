@@ -11,6 +11,7 @@ const blogRouter = require("./routes/blogRoute")
 const catagoryRouter = require("./routes/prodCatagoryRoute")
 const blogCatagoryRouter = require("./routes/blogCatagoryRoute")
 const brandRouter = require("./routes/brandRoute")
+const coupunRouter = require("./routes/coupunRoute")
 const cookieParser = require('cookie-parser');
 const morgan = require("morgan");
 dbConnect();
@@ -24,6 +25,7 @@ app.use("/api/blog",blogRouter);
 app.use("/api/catagory",catagoryRouter);
 app.use("/api/blogcatagory",blogCatagoryRouter);
 app.use("/api/brand",brandRouter);
+app.use("/api/coupun",coupunRouter);
 
 app.use(notFound);
 app.use(errorHandler);

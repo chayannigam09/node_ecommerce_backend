@@ -2,7 +2,9 @@ const Product = require("../models/productModel");
 const User = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
 const slugify = require("slugify");
-
+const validMongoId = require("../utils/validateMongodbId");
+const cloudinaryUploading = require("../utils/cloudinary");
+const fs = require("fs");
 //create products
 const createProduct = asyncHandler(async (req, res) => {
   try {
@@ -145,7 +147,7 @@ const addToWishlist = asyncHandler(async (req, res) => {
 
 const rating = asyncHandler(async (req, res) => {
   const { _id } = req.user;
-  const { star, prodId } = req.body;
+  const { star, prodId, comment } = req.body;
   try {
     const product = await Product.findById(prodId);
     let alreadyRated = product.ratings.find(
@@ -155,7 +157,7 @@ const rating = asyncHandler(async (req, res) => {
         const updatedRating = await Product.updateOne({
             ratings:{$elemMatch:alreadyRated}
         },{
-            $set:{"ratings.$.star":star},
+            $set:{"ratings.$.star":star, "ratings.$.comment":comment},
         },{
             new:true
         });
@@ -165,6 +167,7 @@ const rating = asyncHandler(async (req, res) => {
             $push:{
                 ratings:{
                     star:star,
+                    comment:comment,
                     postedBy:_id
                 },
             },
@@ -184,6 +187,26 @@ const rating = asyncHandler(async (req, res) => {
   }
 });
 
+const uploadImages = asyncHandler(async (req, res) => {
+  const {id} = req.params;
+  validMongoId(id);
+  try{
+    const uploader = (path)=> cloudinaryUploading(path,"images");
+    const urls = [];
+    const files = req.files;
+    for(const file of files){
+      const {path} = file;
+      const newpath = await uploader(path);
+      urls.push(newpath);
+      fs.unlinkSync(path);
+    }
+    const findProduct = await Product.findByIdAndUpdate(id,{images:urls.map((file)=>{return file}),},{new:true});
+    res.json(findProduct);
+  }catch(err){
+    throw new Error(err);
+  }
+});
+
 module.exports = {
   createProduct,
   getaProduct,
@@ -192,4 +215,5 @@ module.exports = {
   deleteProduct,
   addToWishlist,
   rating,
+  uploadImages
 };
