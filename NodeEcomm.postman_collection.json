@@ -1,0 +1,1728 @@
+{
+	"info": {
+		"_postman_id": "18ba3383-36de-40b3-b3a9-090a068aac45",
+		"name": "NodeEcomm",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23497512"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Admin login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"chayan@mailinator.com\",\r\n    \"password\":\"chayan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}user/admin-login",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"admin-login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"dew@mailinator.com\",\r\n    \"password\":\"chayan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}user/login",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"Chayan\",\r\n    \"lastname\":\"Nigam\",\r\n    \"email\":\"chayan1@mailinator.com\",\r\n    \"mobile\":\"9998889909\",\r\n    \"password\":\"chayan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}user/register",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}user/all-users",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"all-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}user/63ecdd86109d33cf4f15d715",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"63ecdd86109d33cf4f15d715"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}user/delete/63ecdee9109d33cf4f15d71d",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"delete",
+								"63ecdee9109d33cf4f15d71d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"Sams\",\r\n    \"lastname\":\"curr\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}user/update/63ece13611e950d41f667ee9",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"update",
+								"63ece13611e950d41f667ee9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Block a user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3NjUzNjY2NCwiZXhwIjoxNjc2Nzk1ODY0fQ.5w7thZT2NWfW6aym1AQh84fmMrp8VMhmqrFx3RTWJFo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}user/block-user/63edda27631a036e45a064b9",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"block-user",
+								"63edda27631a036e45a064b9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UnBlock a user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3NjUzNjY2NCwiZXhwIjoxNjc2Nzk1ODY0fQ.5w7thZT2NWfW6aym1AQh84fmMrp8VMhmqrFx3RTWJFo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}user/unblock-user/63edda27631a036e45a064b9",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"unblock-user",
+								"63edda27631a036e45a064b9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}user/refresh",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3NjU1NDcxNCwiZXhwIjoxNjc2NjQxMTE0fQ.HkPMJUUMqqnEzP7WpAx94zbfJUNC9bzdlozxMy0KPE4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"chayan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}user/password",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"dew@mailinator.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}user/forgot-password",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"chayan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}user/reset-password/82a277cdb0a2382e07e8103ec2f15bf3bfde25495fa1ce8cede29a2f3fe33734",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"reset-password",
+								"82a277cdb0a2382e07e8103ec2f15bf3bfde25495fa1ce8cede29a2f3fe33734"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get wishlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWRkYTI3NjMxYTAzNmU0NWEwNjRiOSIsImlhdCI6MTY3Njk4Mjc1MCwiZXhwIjoxNjc3MDY5MTUwfQ.BEtn8H8ezSnfSyQDvEUOMQBQhIrRcEEnSsoRQYiFiks",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}user/getwishlist",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"getwishlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWRkYTI3NjMxYTAzNmU0NWEwNjRiOSIsImlhdCI6MTY3Njk4Mjc1MCwiZXhwIjoxNjc3MDY5MTUwfQ.BEtn8H8ezSnfSyQDvEUOMQBQhIrRcEEnSsoRQYiFiks",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address\":\"Indore\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}user/saveaddress",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"saveaddress"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add to cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWRkYTI3NjMxYTAzNmU0NWEwNjRiOSIsImlhdCI6MTY3NzA2OTQyNSwiZXhwIjoxNjc3MTU1ODI1fQ.8qAmvt2X5Li5z6F0x1Y15BC1yLmt-JoUFHZpvHJw9yU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cart\":[\r\n        {\r\n            \"_id\":\"63f37c92d075386416fead6c\",\r\n            \"count\":2,\r\n            \"color\":\"blue\"\r\n        },\r\n        {\r\n            \"_id\":\"63ee1ad78107dff975e66cfc\",\r\n            \"count\":3,\r\n            \"color\":\"green\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}user/cart",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user's cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWRkYTI3NjMxYTAzNmU0NWEwNjRiOSIsImlhdCI6MTY3NzA2OTQyNSwiZXhwIjoxNjc3MTU1ODI1fQ.8qAmvt2X5Li5z6F0x1Y15BC1yLmt-JoUFHZpvHJw9yU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}user/get-cart",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"get-cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Empty cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWRkYTI3NjMxYTAzNmU0NWEwNjRiOSIsImlhdCI6MTY3NzA2OTQyNSwiZXhwIjoxNjc3MTU1ODI1fQ.8qAmvt2X5Li5z6F0x1Y15BC1yLmt-JoUFHZpvHJw9yU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}user/empty-cart",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"empty-cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apply coupun",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWRkYTI3NjMxYTAzNmU0NWEwNjRiOSIsImlhdCI6MTY3NzA2OTQyNSwiZXhwIjoxNjc3MTU1ODI1fQ.8qAmvt2X5Li5z6F0x1Y15BC1yLmt-JoUFHZpvHJw9yU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"coupon\":\"CASHBACK50\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}user/cart/applycoupun",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"cart",
+								"applycoupun"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWRkYTI3NjMxYTAzNmU0NWEwNjRiOSIsImlhdCI6MTY3NzA2OTQyNSwiZXhwIjoxNjc3MTU1ODI1fQ.8qAmvt2X5Li5z6F0x1Y15BC1yLmt-JoUFHZpvHJw9yU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"COD\":true,\r\n    \"couponApplied\":true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}user/create-order",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"create-order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWRkYTI3NjMxYTAzNmU0NWEwNjRiOSIsImlhdCI6MTY3NzA2OTQyNSwiZXhwIjoxNjc3MTU1ODI1fQ.8qAmvt2X5Li5z6F0x1Y15BC1yLmt-JoUFHZpvHJw9yU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}user/get-order/63f618ac5a19f626b7f28c40",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"get-order",
+								"63f618ac5a19f626b7f28c40"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update order Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3NzA3NDUwMiwiZXhwIjoxNjc3MTYwOTAyfQ.PZXoyr9Jp13W8IWHEM3L877pxfoh8YgwnwaqVFwfOcc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\":\"Processing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}user/update-order/63f618ac5a19f626b7f28c40",
+							"host": [
+								"{{base_url}}user"
+							],
+							"path": [
+								"update-order",
+								"63f618ac5a19f626b7f28c40"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Apple watch\",\r\n    \"slug\":\"abc\",\r\n    \"description\":\"Watch series 6\",\r\n    \"price\":\"46000\",\r\n    \"brand\":\"Apple\",\r\n    \"quantity\":\"1000\",\r\n    \"images\":\"\",\r\n    \"ratings\":5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}product/",
+							"host": [
+								"{{base_url}}product"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}product/63ee045e65ea3ee4f6acaf8a",
+							"host": [
+								"{{base_url}}product"
+							],
+							"path": [
+								"63ee045e65ea3ee4f6acaf8a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}product?page=1&limit=2",
+							"host": [
+								"{{base_url}}product"
+							],
+							"query": [
+								{
+									"key": "brand",
+									"value": "Apple",
+									"disabled": true
+								},
+								{
+									"key": "price[lte]",
+									"value": "30000",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "catagory,brand",
+									"disabled": true
+								},
+								{
+									"key": "fields",
+									"value": "-price,-title,-brand",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"pro\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}product/update/63ee0e83ca80c6cd059f8f5e",
+							"host": [
+								"{{base_url}}product"
+							],
+							"path": [
+								"update",
+								"63ee0e83ca80c6cd059f8f5e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3NjU1NDcxNCwiZXhwIjoxNjc2NjQxMTE0fQ.HkPMJUUMqqnEzP7WpAx94zbfJUNC9bzdlozxMy0KPE4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}product/delete/63ee0e83ca80c6cd059f8f5e",
+							"host": [
+								"{{base_url}}product"
+							],
+							"path": [
+								"delete",
+								"63ee0e83ca80c6cd059f8f5e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add to wishlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWRkYTI3NjMxYTAzNmU0NWEwNjRiOSIsImlhdCI6MTY3Njk4Mjc1MCwiZXhwIjoxNjc3MDY5MTUwfQ.BEtn8H8ezSnfSyQDvEUOMQBQhIrRcEEnSsoRQYiFiks",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"prodId\":\"63ee1ac68107dff975e66cfa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}product/wishlist",
+							"host": [
+								"{{base_url}}product"
+							],
+							"path": [
+								"wishlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rating",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"star\":\"5\",\r\n    \"prodId\":\"63ee1ad78107dff975e66cfc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}product/rating",
+							"host": [
+								"{{base_url}}product"
+							],
+							"path": [
+								"rating"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Images",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Blog",
+			"item": [
+				{
+					"name": "Upload Images",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njk3MTE3MywiZXhwIjoxNjc3MDU3NTczfQ.uK6LEKJC1uvobqcfozlkaeVpJUjZukweOzDTpNeEkLk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/C:/Users/ChayanNigam/Downloads/MicrosoftTeams-image (11).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}blog/upload/63f4ab01ab32d83c09e584d0",
+							"host": [
+								"{{base_url}}blog"
+							],
+							"path": [
+								"upload",
+								"63f4ab01ab32d83c09e584d0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3NjU1NDcxNCwiZXhwIjoxNjc2NjQxMTE0fQ.HkPMJUUMqqnEzP7WpAx94zbfJUNC9bzdlozxMy0KPE4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"My blog 4\",\r\n    \"catagory\":\"Movie\",\r\n    \"discription\":\"Myblog discription 4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}blog/",
+							"host": [
+								"{{base_url}}blog"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3NjU1NDcxNCwiZXhwIjoxNjc2NjQxMTE0fQ.HkPMJUUMqqnEzP7WpAx94zbfJUNC9bzdlozxMy0KPE4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"My updated blog 1\",\r\n    \"catagory\":\"IT\",\r\n    \"discription\":\"Myblog updated discription1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}blog/update/63ef7dd721e58fdaa697e36a",
+							"host": [
+								"{{base_url}}blog"
+							],
+							"path": [
+								"update",
+								"63ef7dd721e58fdaa697e36a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3NjU1NDcxNCwiZXhwIjoxNjc2NjQxMTE0fQ.HkPMJUUMqqnEzP7WpAx94zbfJUNC9bzdlozxMy0KPE4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}blog/63ef7e2f21e58fdaa697e372",
+							"host": [
+								"{{base_url}}blog"
+							],
+							"path": [
+								"63ef7e2f21e58fdaa697e372"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all blogs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}blog",
+							"host": [
+								"{{base_url}}blog"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3NjY0MjU1OSwiZXhwIjoxNjc2NzI4OTU5fQ.sVBTkt8184BRmyTA-TMqENQQ1x4kq3GKjAcrPK4_-ho",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}blog/delete/63ef7e3b21e58fdaa697e376",
+							"host": [
+								"{{base_url}}blog"
+							],
+							"path": [
+								"delete",
+								"63ef7e3b21e58fdaa697e376"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like a blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"blogId\":\"63ef7e2f21e58fdaa697e372\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}blog/like",
+							"host": [
+								"{{base_url}}blog"
+							],
+							"path": [
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dislike a blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"blogId\":\"63ef7e2f21e58fdaa697e372\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}blog/dislike",
+							"host": [
+								"{{base_url}}blog"
+							],
+							"path": [
+								"dislike"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product Catagory",
+			"item": [
+				{
+					"name": "Create catagory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"headphones\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}catagory/",
+							"host": [
+								"{{base_url}}catagory"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update catagory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Laptops\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}catagory/update/63f3541a829af824e65899ec",
+							"host": [
+								"{{base_url}}catagory"
+							],
+							"path": [
+								"update",
+								"63f3541a829af824e65899ec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete catagory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}catagory/delete/63f358d9fe945d975a45ee19",
+							"host": [
+								"{{base_url}}catagory"
+							],
+							"path": [
+								"delete",
+								"63f358d9fe945d975a45ee19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all catagory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}catagory/get",
+							"host": [
+								"{{base_url}}catagory"
+							],
+							"path": [
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a catagry",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}catagory/get/63f35431829af824e65899f0",
+							"host": [
+								"{{base_url}}catagory"
+							],
+							"path": [
+								"get",
+								"63f35431829af824e65899f0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Blog Catagory",
+			"item": [
+				{
+					"name": "Create catagory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"cover\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}blogcatagory/",
+							"host": [
+								"{{base_url}}blogcatagory"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update catagory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"COVERS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}blogcatagory/update/63f35db59b37a3eb8f7ba364",
+							"host": [
+								"{{base_url}}blogcatagory"
+							],
+							"path": [
+								"update",
+								"63f35db59b37a3eb8f7ba364"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete catagory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}blogcatagory/delete/63f35db59b37a3eb8f7ba364",
+							"host": [
+								"{{base_url}}blogcatagory"
+							],
+							"path": [
+								"delete",
+								"63f35db59b37a3eb8f7ba364"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all catagory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}blogcatagory/get",
+							"host": [
+								"{{base_url}}blogcatagory"
+							],
+							"path": [
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a catagry",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}blogcatagory/get/63f35db59b37a3eb8f7ba364",
+							"host": [
+								"{{base_url}}blogcatagory"
+							],
+							"path": [
+								"get",
+								"63f35db59b37a3eb8f7ba364"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brand",
+			"item": [
+				{
+					"name": "Create brand",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Samsung\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}brand/",
+							"host": [
+								"{{base_url}}brand"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update brand",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Redmi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}brand/update/63f36125a63227790823d2f3",
+							"host": [
+								"{{base_url}}brand"
+							],
+							"path": [
+								"update",
+								"63f36125a63227790823d2f3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete brand",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}brand/delete/63f3612da63227790823d2f7",
+							"host": [
+								"{{base_url}}brand"
+							],
+							"path": [
+								"delete",
+								"63f3612da63227790823d2f7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all brand",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}brand/get",
+							"host": [
+								"{{base_url}}brand"
+							],
+							"path": [
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a brand",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njg4NzAxMSwiZXhwIjoxNjc2OTczNDExfQ.uxG9JAW4SfEBOSsF8zDl1Mt4J19tFw2qfqgYrIzKVT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}brand/get/63f36125a63227790823d2f3",
+							"host": [
+								"{{base_url}}brand"
+							],
+							"path": [
+								"get",
+								"63f36125a63227790823d2f3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Coupun",
+			"item": [
+				{
+					"name": "Add coupun",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njk3MTE3MywiZXhwIjoxNjc3MDU3NTczfQ.uK6LEKJC1uvobqcfozlkaeVpJUjZukweOzDTpNeEkLk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"CASHBACK90\",\r\n    \"expiry\":\"Wed, 22 Feb 2023 09:19:33 GMT\",\r\n    \"discount\":\"90\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}coupun/create",
+							"host": [
+								"{{base_url}}coupun"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all coupuns",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njk3MTE3MywiZXhwIjoxNjc3MDU3NTczfQ.uK6LEKJC1uvobqcfozlkaeVpJUjZukweOzDTpNeEkLk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}coupun/getall",
+							"host": [
+								"{{base_url}}coupun"
+							],
+							"path": [
+								"getall"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete coupun",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njk3MTE3MywiZXhwIjoxNjc3MDU3NTczfQ.uK6LEKJC1uvobqcfozlkaeVpJUjZukweOzDTpNeEkLk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}coupun/delete/63f48ffe59a085c67bc42b05",
+							"host": [
+								"{{base_url}}coupun"
+							],
+							"path": [
+								"delete",
+								"63f48ffe59a085c67bc42b05"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update coupun",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWNkZDg2MTA5ZDMzY2Y0ZjE1ZDcxNSIsImlhdCI6MTY3Njk3MTE3MywiZXhwIjoxNjc3MDU3NTczfQ.uK6LEKJC1uvobqcfozlkaeVpJUjZukweOzDTpNeEkLk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"CASHBACK95\",\r\n    \"expiry\":\"Wed, 25 Feb 2023 09:19:33 GMT\",\r\n    \"discount\":\"95\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}coupun/update/63f4901059a085c67bc42b0d",
+							"host": [
+								"{{base_url}}coupun"
+							],
+							"path": [
+								"update",
+								"63f4901059a085c67bc42b0d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
