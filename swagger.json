@@ -1,0 +1,376 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Node Ecommerce",
+    "security": [{ "bearerAuth": [] }],
+    "description": "Node Ecommerce Application APIs"
+  },
+  "host": "localhost:4000/api/",
+  "basePath": "/",
+  "schemes": ["http"],
+  "securityDefinitions": {
+    "APIKey": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "security": [
+    {
+      "APIKey": []
+    }
+  ],
+  "paths": {
+    "user/register": {
+      "post": {
+        "summary": "Register new user",
+        "tags":["User"],
+        "description": "Register new user",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we wanna Register",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstname":{
+                    "type":"string"
+                },
+                "lastname":{
+                    "type":"string"
+                },
+                "mobile":{
+                    "type":"integer"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User successfully registerd"
+          },
+          "400": {
+            "description": "Error"
+          }
+        }
+      }
+    },
+    "user/login": {
+      "post": {
+        "summary": "User Login",
+        "tags":["User"],
+        "description": "Login to your account",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that wants to log in",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully logged in",
+            "schema": {
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "user/admin-login": {
+      "post": {
+        "summary": "Admin Login",
+        "tags":["User"],
+        "description": "Login to your account",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "Admin",
+            "in": "body",
+            "description": "Admin that wants to log in",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully logged in"
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "user/all-users": {
+      "get": {
+        "summary": "Get all users",
+        "tags":["User"],
+        "description": "Get all users",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "user/{id}": {
+      "get": {
+        "summary": "Get user by id",
+        "tags":["User"],
+        "description": "Get user by id",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "user id",
+              "required": true,
+              "type":"string"              
+            }
+          ],
+        "responses": {
+          "200": {
+            "description": "Successfull"
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "user/delete/{id}": {
+      "delete": {
+        "summary": "Delete a user",
+        "tags":["User"],
+        "description": "Delete a user by id",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "User id",
+              "required": true,
+              "type":"string"              
+            }
+          ],
+        "responses": {
+          "200": {
+            "description": "Successfull"
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "user/block-user/{id}": {
+      "put": {
+        "summary": "Block a user",
+        "tags":["User"],
+        "description": "Block a user by id",
+        "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "User id",
+              "required": true,
+              "type":"string"              
+            }
+        ]
+      }
+    },
+    "user/unblock-user/{id}": {
+      "put": {
+        "summary": "UnBlock a user",
+        "tags":["User"],
+        "description": "UnBlock a user by id",
+        "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "User id",
+              "required": true,
+              "type":"string"              
+            }
+        ]
+      }
+    },
+    "user/refresh": {
+        "get": {
+          "summary": "Get refresh token",
+          "tags":["User"],
+          "description": "Get refresh token",
+          "produces": ["application/json"],
+          "consumes": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "Successfull"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+    },
+    "user/password": {
+      "put": {
+        "summary": "Change Password",
+        "tags":["User"],
+        "description": "Change Password",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "Password",
+            "in": "body",
+            "description": "Enter a new password",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull"
+          },
+          "400": {
+            "description": "Invalid status"
+          }
+        }
+      }
+    },
+    "user/forgot-password": {
+      "post": {
+        "summary": "Forgot Password",
+        "tags":["User"],
+        "description": "Forgot Password",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "Email",
+            "in": "body",
+            "description": "Enter your email",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull"
+          },
+          "400": {
+            "description": "Invalid status"
+          }
+        }
+      }
+    },
+    "user/reset-password/{token}": {
+      "put": {
+        "summary": "Forgot Password",
+        "tags":["User"],
+        "description": "Forgot Password",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+            {
+                "name":"Token",
+                "in":"path",
+                "description":"Enter token that you recieved in mail",
+                "required":true
+            },
+            {
+              "name": "Password",
+              "in": "body",
+              "description": "Set a new password",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+        "responses": {
+          "200": {
+            "description": "Successfull"
+          },
+          "400": {
+            "description": "Invalid status"
+          }
+        }
+      }
+    }
+  }
+}

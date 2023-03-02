@@ -14,6 +14,8 @@ const brandRouter = require("./routes/brandRoute")
 const coupunRouter = require("./routes/coupunRoute")
 const cookieParser = require('cookie-parser');
 const morgan = require("morgan");
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 dbConnect();
 app.use(morgan("dev"));
 app.use(bodyParser.json());
@@ -27,6 +29,7 @@ app.use("/api/blogcatagory",blogCatagoryRouter);
 app.use("/api/brand",brandRouter);
 app.use("/api/coupun",coupunRouter);
 
+app.use("/api-docs",swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 app.use(notFound);
 app.use(errorHandler);
 app.listen(PORT, ()=>{
