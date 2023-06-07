@@ -4,7 +4,9 @@
   "description": "an ecommerce node app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
@@ -25,9 +27,11 @@
     "sharp": "^0.31.3",
     "slugify": "^1.6.5",
     "swagger-ui-express": "^4.6.2",
+    "twilio": "^4.11.2",
     "uniqid": "^5.4.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "webpack-cli": "^5.0.1"
   }
 }
