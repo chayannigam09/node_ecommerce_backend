@@ -6,9 +6,9 @@
     "security": [{ "bearerAuth": [] }],
     "description": "Node Ecommerce Application APIs"
   },
-  "host": "localhost:4000/api/",
+  "host": "nodeecommercebackend-production.up.railway.app/api/",
   "basePath": "/",
-  "schemes": ["http"],
+  "schemes": ["http","https"],
   "securityDefinitions": {
     "APIKey": {
       "type": "apiKey",
