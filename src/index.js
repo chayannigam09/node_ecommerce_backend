@@ -17,6 +17,18 @@ const morgan = require("morgan");
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger.json');
 dbConnect();
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+  
+    if (req.method === 'OPTIONS') {
+      res.sendStatus(200); // Respond to preflight requests
+    } else {
+      next();
+    }
+  });
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}))
