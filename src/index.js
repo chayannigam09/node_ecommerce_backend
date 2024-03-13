@@ -33,6 +33,9 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(cookieParser());
+app.use("/", (req, res) => {
+  res.send("Server Running");
+});
 app.use("/api/user",authRouter);
 app.use("/api/product",productRouter);
 app.use("/api/blog",blogRouter);
