@@ -34,7 +34,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(cookieParser());
 app.use("/", (req, res) => {
-  res.send("Server Running");
+  const htmlContent = `
+  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <h1>Server Running</h1>
+  </div>
+`;
+  res.send(htmlContent);
 });
 app.use("/api/user",authRouter);
 app.use("/api/product",productRouter);
