@@ -1,30 +1,7 @@
-const express = require("express");
-const {
-  createUser,
-  loginUserCtrl,
-  getAllUser,
-  getaUser,
-  deleteUser,
-  updateUser,
-  blockUser,
-  unblockUser,
-  handleRefreshToken,
-  logout,
-  updatePassword,
-  forgotPasswordToken,
-  resetPassword,
-  loginAdmin,
-  getWishlist,
-  saveUserAddress,
-  addToCart,
-  getUserCart,
-  emptyCart,
-  applyCoupun,
-  createOrder,
-  getUserOrder,updateOrderStatus
-} = require("../controller/userCtrl");
-const { authMiddleware, isAdmin } = require("../middlewares/authMiddleware");
-const router = express.Router();
+import { Router } from "express";
+import { createUser, loginUserCtrl, getAllUser, getaUser, deleteUser, updateUser, blockUser, unblockUser, handleRefreshToken, logout, updatePassword, forgotPasswordToken, resetPassword, loginAdmin, getWishlist, saveUserAddress, addToCart, getUserCart, emptyCart, applyCoupun, createOrder, getUserOrder, updateOrderStatus } from "../controller/userCtrl.js";
+import { authMiddleware, isAdmin } from "../middlewares/authMiddleware.js";
+const router = Router();
 
 router.post("/register", createUser);
 router.post("/forgot-password", forgotPasswordToken);
@@ -50,4 +27,4 @@ router.put("/block-user/:id", authMiddleware, isAdmin, blockUser);
 router.put("/unblock-user/:id", authMiddleware, isAdmin, unblockUser);
 router.put("/update-order/:id", authMiddleware, isAdmin, updateOrderStatus);
 
-module.exports = router;
+export default router;

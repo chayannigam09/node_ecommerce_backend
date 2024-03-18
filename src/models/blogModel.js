@@ -1,7 +1,7 @@
-const mongoose = require('mongoose'); // Erase if already required
+import { Schema, model } from 'mongoose'; // Erase if already required
 
 // Declare the Schema of the Mongo model
-var blogSchema = new mongoose.Schema({
+var blogSchema = new Schema({
     title:{
         type:String,
         required:true
@@ -28,13 +28,13 @@ var blogSchema = new mongoose.Schema({
     },
     likes:[
         {
-            type:mongoose.Schema.Types.ObjectId,
+            type:Schema.Types.ObjectId,
             ref:"User"
         }
     ],
     dislikes:[
         {
-            type:mongoose.Schema.Types.ObjectId,
+            type:Schema.Types.ObjectId,
             ref:"User"
         }
     ],
@@ -55,4 +55,4 @@ var blogSchema = new mongoose.Schema({
 );
 
 //Export the model
-module.exports = mongoose.model('Blog', blogSchema);
+export default model('Blog', blogSchema);

@@ -1,11 +1,11 @@
-const Blog = require("../models/blogModel");
-const User = require("../models/userModel");
-const asyncHandler = require("express-async-handler");
-const validMongoId = require("../utils/validateMongodbId");
-const cloudinaryUploading = require("../utils/cloudinary");
-const fs = require("fs");
+import Blog from "../models/blogModel.js";
+import User from "../models/userModel.js";
+import asyncHandler from "express-async-handler";
+import validMongoId from "../utils/validateMongodbId.js";
+import cloudinaryUploading from "../utils/cloudinary.js";
+import { unlinkSync } from "fs";
 
-const createBlog = asyncHandler(async(req,res)=>{
+export const createBlog = asyncHandler(async(req,res)=>{
     try{
         const newBlog = await Blog.create(req.body);
         res.json({
@@ -17,7 +17,7 @@ const createBlog = asyncHandler(async(req,res)=>{
     }
 });
 
-const updateBlog = asyncHandler(async(req,res)=>{
+export const updateBlog = asyncHandler(async(req,res)=>{
     const id = req.params.id;
     validMongoId(id)
     try{
@@ -31,7 +31,7 @@ const updateBlog = asyncHandler(async(req,res)=>{
     }
 });
 
-const getaBlog = asyncHandler(async(req,res)=>{
+export const getaBlog = asyncHandler(async(req,res)=>{
     validMongoId(req.params.id)
     try{
         const findBlog = await Blog.findById(req.params.id).populate("likes");
@@ -46,7 +46,7 @@ const getaBlog = asyncHandler(async(req,res)=>{
     }
 });
 
-const getAllBlogs = asyncHandler(async(req,res)=>{
+export const getAllBlogs = asyncHandler(async(req,res)=>{
     try{
         const allBlogs = await Blog.find();
         res.json({allBlogs})
@@ -55,7 +55,7 @@ const getAllBlogs = asyncHandler(async(req,res)=>{
     }
 });
 
-const deleteBlog = asyncHandler(async(req,res)=>{
+export const deleteBlog = asyncHandler(async(req,res)=>{
     const id = req.params.id;
     validMongoId(id)
     try{
@@ -69,7 +69,7 @@ const deleteBlog = asyncHandler(async(req,res)=>{
     }
 });
 
-const likeBlog = asyncHandler(async(req,res)=>{
+export const likeBlog = asyncHandler(async(req,res)=>{
     const {blogId} = req.body;
     validMongoId(blogId)
     try{
@@ -102,7 +102,7 @@ const likeBlog = asyncHandler(async(req,res)=>{
     }
 });
 
-const disLikeBlog = asyncHandler(async(req,res)=>{
+export const disLikeBlog = asyncHandler(async(req,res)=>{
     const {blogId} = req.body;
     validMongoId(blogId)
     try{
@@ -135,7 +135,7 @@ const disLikeBlog = asyncHandler(async(req,res)=>{
     }
 });
 
-const uploadImages = asyncHandler(async (req, res) => {
+export const uploadImages = asyncHandler(async (req, res) => {
     const {id} = req.params;
     validMongoId(id);
     try{
@@ -146,7 +146,7 @@ const uploadImages = asyncHandler(async (req, res) => {
         const {path} = file;
         const newpath = await uploader(path);
         urls.push(newpath);
-        fs.unlinkSync(path);
+        unlinkSync(path);
       }
       const findBlog = await Blog.findByIdAndUpdate(id,{images:urls.map((file)=>{return file}),},{new:true});
       res.json(findBlog);
@@ -155,4 +155,4 @@ const uploadImages = asyncHandler(async (req, res) => {
     }
   });
 
-module.exports = {createBlog,updateBlog,getaBlog,getAllBlogs,deleteBlog,likeBlog,disLikeBlog, uploadImages};
+// export default {createBlog,updateBlog,getaBlog,getAllBlogs,deleteBlog,likeBlog,disLikeBlog, uploadImages};

@@ -1,7 +1,7 @@
-const express = require("express");
-const { createBrand, updateBrand, deleteBrand, getAllBrand, getaBrand } = require("../controller/brandCtrl");
-const { isAdmin, authMiddleware } = require("../middlewares/authMiddleware");
-const router = express.Router();
+import { Router } from "express";
+import { createBrand, updateBrand, deleteBrand, getAllBrand, getaBrand } from "../controller/brandCtrl.js";
+import { isAdmin, authMiddleware } from "../middlewares/authMiddleware.js";
+const router = Router();
 
 router.post('/',authMiddleware, isAdmin, createBrand)
 router.get('/get',authMiddleware, getAllBrand)
@@ -10,4 +10,4 @@ router.put('/update/:id',authMiddleware, isAdmin, updateBrand)
 router.delete('/delete/:id',authMiddleware, isAdmin, deleteBrand)
 
 
-module.exports = router;
+export default router;

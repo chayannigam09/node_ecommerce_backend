@@ -1,8 +1,8 @@
-const express = require("express");
-const { createBlog, updateBlog, getaBlog, getAllBlogs, deleteBlog, likeBlog,disLikeBlog, uploadImages } = require("../controller/blogCtrl");
-const { authMiddleware, isAdmin} = require('../middlewares/authMiddleware');
-const { uploadPhoto, blogsImageResize } = require("../middlewares/uploadImages");
-const router = express.Router();
+import { Router } from "express";
+import { createBlog, updateBlog, getaBlog, getAllBlogs, deleteBlog, likeBlog, disLikeBlog, uploadImages } from "../controller/blogCtrl.js";
+import { authMiddleware, isAdmin } from '../middlewares/authMiddleware.js';
+import { uploadPhoto, blogsImageResize } from "../middlewares/uploadImages.js";
+const router = Router();
 
 router.post('/',authMiddleware,isAdmin,createBlog)
 router.get('/',getAllBlogs)
@@ -14,4 +14,4 @@ router.put('/like',authMiddleware,isAdmin,likeBlog)
 router.put('/dislike',authMiddleware,isAdmin,disLikeBlog)
 
 
-module.exports = router;
+export default router;

@@ -1,19 +1,19 @@
-const User = require("../models/userModel");
-const asyncHandler = require("express-async-handler");
-const generateToken = require("../config/jwtToken");
-const validMongoId = require("../utils/validateMongodbId");
-const generateRefreshToken = require("../config/refreshToken");
-const jwt = require("jsonwebtoken");
-const { response } = require("express");
-const sendMail = require("./emailCtrl");
-const crypto = require("crypto");
-const Cart = require("../models/cartModel");
-const Product = require("../models/productModel");
-const Coupun = require("../models/coupunModel");
-const Order = require("../models/orderModel");
-const uniqid = require('uniqid'); 
+import User from "../models/userModel.js";
+import asyncHandler from "express-async-handler";
+import generateToken from "../config/jwtToken.js";
+import validMongoId from "../utils/validateMongodbId.js";
+import generateRefreshToken from "../config/refreshToken.js";
+import { verify } from "jsonwebtoken";
+import { response } from "express";
+import sendMail from "./emailCtrl.js";
+import { createHash } from "crypto";
+import Cart from "../models/cartModel.js";
+import Product from "../models/productModel.js";
+import Coupun from "../models/coupunModel.js";
+import Order  from "../models/orderModel.js";
+import uniqid from 'uniqid'; 
 // Create a User
-const createUser = asyncHandler(async (req, res) => {
+export const createUser = asyncHandler(async (req, res) => {
   const email = req.body.email;
   const findUser = await User.findOne({ email: email });
   if (!findUser) {
@@ -32,7 +32,7 @@ const createUser = asyncHandler(async (req, res) => {
 });
 
 // Login a User
-const loginUserCtrl = asyncHandler(async (req, res) => {
+export const loginUserCtrl = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const findUser = await User.findOne({ email });
   if (findUser && (await findUser.isPasswordMatched(password))) {
@@ -63,7 +63,7 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
   }
 });
 
-const loginAdmin = asyncHandler(async (req, res) => {
+export const loginAdmin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const findAdmin = await User.findOne({ email });
   if(findAdmin.role !== "admin") throw new Error("Not Authorised")
@@ -96,7 +96,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
 });
 
 // Get All Users
-const getAllUser = asyncHandler(async (req, res) => {
+export const getAllUser = asyncHandler(async (req, res) => {
   try {
     const getUsers = await User.find();
     res.json(getUsers);
@@ -106,7 +106,7 @@ const getAllUser = asyncHandler(async (req, res) => {
 });
 
 // Get a singl user
-const getaUser = asyncHandler(async (req, res) => {
+export const getaUser = asyncHandler(async (req, res) => {
   validMongoId(req.params.id);
   try {
     const getUser = await User.findById(req.params.id);
@@ -117,7 +117,7 @@ const getaUser = asyncHandler(async (req, res) => {
 });
 
 //Delete a user
-const deleteUser = asyncHandler(async (req, res) => {
+export const deleteUser = asyncHandler(async (req, res) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.params.id);
     res.json({
@@ -130,7 +130,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 });
 
 //Update a user
-const updateUser = asyncHandler(async (req, res) => {
+export const updateUser = asyncHandler(async (req, res) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.user._id,
@@ -150,7 +150,7 @@ const updateUser = asyncHandler(async (req, res) => {
 });
 
 // Block User
-const blockUser = asyncHandler(async (req, res) => {
+export const blockUser = asyncHandler(async (req, res) => {
   try {
     const block = await User.findByIdAndUpdate(
       req.params.id,
@@ -169,7 +169,7 @@ const blockUser = asyncHandler(async (req, res) => {
 });
 
 // unBlock User
-const unblockUser = asyncHandler(async (req, res) => {
+export const unblockUser = asyncHandler(async (req, res) => {
   try {
     const unblock = await User.findByIdAndUpdate(
       req.params.id,
@@ -187,7 +187,7 @@ const unblockUser = asyncHandler(async (req, res) => {
   }
 });
 
-const handleRefreshToken = asyncHandler(async (req, res) => {
+export const handleRefreshToken = asyncHandler(async (req, res) => {
   const cookie = req.cookies;
   if (!cookie?.refreshToken) {
     throw new Error("No refresh token in cookies");
@@ -197,7 +197,7 @@ const handleRefreshToken = asyncHandler(async (req, res) => {
   if (!user) {
     throw new Error("No refreshToken present in db or not matched");
   }
-  jwt.verify(refreshToken, process.env.JWT_SECRET, (err, decoded) => {
+  verify(refreshToken, process.env.JWT_SECRET, (err, decoded) => {
     if (err || user.id !== decoded.id) {
       throw new Error("There is somthing wrong with the token");
     }
@@ -207,7 +207,7 @@ const handleRefreshToken = asyncHandler(async (req, res) => {
   res.json(user);
 });
 
-const logout = asyncHandler(async (req, res) => {
+export const logout = asyncHandler(async (req, res) => {
   const cookie = req.cookies;
   if (!cookie?.refreshToken) {
     throw new Error("No refresh token in cookies");
@@ -231,7 +231,7 @@ const logout = asyncHandler(async (req, res) => {
   res.sendStatus(204); //forbidden
 });
 
-const updatePassword = asyncHandler(async (req, res) => {
+export const updatePassword = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   const { password } = req.body;
   console.log(req.user._id);
@@ -247,7 +247,7 @@ const updatePassword = asyncHandler(async (req, res) => {
   }
 });
 
-const forgotPasswordToken = asyncHandler(async (req, res) => {
+export const forgotPasswordToken = asyncHandler(async (req, res) => {
     const {email} = req.body;
     const user = await User.findOne({ email });
     if(!user) throw new Error("User not found or email not exist")
@@ -270,10 +270,10 @@ const forgotPasswordToken = asyncHandler(async (req, res) => {
     }
 });
 
-const resetPassword = asyncHandler(async (req, res) => {
+export const resetPassword = asyncHandler(async (req, res) => {
     const {password} = req.body;
     const {token} = req.params;
-    const hashedToken =  crypto.createHash('sha256').update(token).digest("hex");
+    const hashedToken =  createHash('sha256').update(token).digest("hex");
     const user = await User.findOne({passwordResetToken:hashedToken,passwordResetExpires:{$gt:Date.now()}});
     if(!user)  throw new Error('Token Expired Plese Try Again Later');
     user.password=password;
@@ -286,7 +286,7 @@ const resetPassword = asyncHandler(async (req, res) => {
     });
 });
 
-const getWishlist = asyncHandler(async (req, res) => {
+export const getWishlist = asyncHandler(async (req, res) => {
   const {_id} = req.user;
   try{
       const findUser = await User.findById(_id).populate("wishlist");
@@ -296,7 +296,7 @@ const getWishlist = asyncHandler(async (req, res) => {
   }
 });
 
-const saveUserAddress = asyncHandler(async(req,res)=>{
+export const saveUserAddress = asyncHandler(async(req,res)=>{
   const {_id} = req.user;
   validMongoId(_id)
   try{
@@ -311,7 +311,7 @@ const saveUserAddress = asyncHandler(async(req,res)=>{
   }
 });
 
-const addToCart = asyncHandler(async(req,res)=>{
+export const addToCart = asyncHandler(async(req,res)=>{
   const {_id} = req.user;
   const {cart} = req.body;
   validMongoId(_id)
@@ -344,7 +344,7 @@ const addToCart = asyncHandler(async(req,res)=>{
   }
 });
 
-const getUserCart = asyncHandler(async(req,res)=>{
+export const getUserCart = asyncHandler(async(req,res)=>{
   const {_id} = req.user;
   validMongoId(_id)
   try{
@@ -355,7 +355,7 @@ const getUserCart = asyncHandler(async(req,res)=>{
   }
 });
 
-const emptyCart = asyncHandler(async(req,res)=>{
+export const emptyCart = asyncHandler(async(req,res)=>{
   const {_id} = req.user;
   validMongoId(_id)
   try{
@@ -367,7 +367,7 @@ const emptyCart = asyncHandler(async(req,res)=>{
   }
 });
 
-const applyCoupun = asyncHandler(async(req,res)=>{
+export const applyCoupun = asyncHandler(async(req,res)=>{
   const {coupon} = req.body;
   const {_id} = req.user;
   // validMongoId(_id)
@@ -383,7 +383,7 @@ const applyCoupun = asyncHandler(async(req,res)=>{
   }
 });
 
-const createOrder = asyncHandler(async(req,res)=>{
+export const createOrder = asyncHandler(async(req,res)=>{
   const {COD,couponApplied} = req.body;
   const {_id} = req.user;
   validMongoId(_id)
@@ -424,7 +424,7 @@ const createOrder = asyncHandler(async(req,res)=>{
   }
 });
 
-const getUserOrder = asyncHandler(async(req,res)=>{
+export const getUserOrder = asyncHandler(async(req,res)=>{
   const {_id} = req.user;
   validMongoId(_id)
   try{
@@ -435,7 +435,7 @@ const getUserOrder = asyncHandler(async(req,res)=>{
   }
 });
 
-const updateOrderStatus = asyncHandler(async(req,res)=>{
+export const updateOrderStatus = asyncHandler(async(req,res)=>{
   const {id} = req.params;
   const {status} = req.body;
   try{
@@ -450,28 +450,28 @@ const updateOrderStatus = asyncHandler(async(req,res)=>{
   }
 });
 
-module.exports = {
-  createUser,
-  loginUserCtrl,
-  getAllUser,
-  getaUser,
-  deleteUser,
-  updateUser,
-  blockUser,
-  unblockUser,
-  handleRefreshToken,
-  logout,
-  updatePassword,
-  forgotPasswordToken,
-  resetPassword,
-  loginAdmin,
-  getWishlist,
-  saveUserAddress,
-  addToCart,
-  getUserCart,
-  emptyCart,
-  applyCoupun,
-  createOrder,
-  getUserOrder,
-  updateOrderStatus
-};
+// export default {
+//   createUser,
+//   loginUserCtrl,
+//   getAllUser,
+//   getaUser,
+//   deleteUser,
+//   updateUser,
+//   blockUser,
+//   unblockUser,
+//   handleRefreshToken,
+//   logout,
+//   updatePassword,
+//   forgotPasswordToken,
+//   resetPassword,
+//   loginAdmin,
+//   getWishlist,
+//   saveUserAddress,
+//   addToCart,
+//   getUserCart,
+//   emptyCart,
+//   applyCoupun,
+//   createOrder,
+//   getUserOrder,
+//   updateOrderStatus
+// };

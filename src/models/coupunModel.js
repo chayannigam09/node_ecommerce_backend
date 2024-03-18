@@ -1,7 +1,7 @@
-const mongoose = require('mongoose'); // Erase if already required
+import { Schema, model } from 'mongoose'; // Erase if already required
 
 // Declare the Schema of the Mongo model
-var coupunSchema = new mongoose.Schema({
+var coupunSchema = new Schema({
     name:{
         type:String,
         required:true,
@@ -19,4 +19,4 @@ var coupunSchema = new mongoose.Schema({
 });
 
 //Export the model
-module.exports = mongoose.model('Coupun', coupunSchema);
+export default model('Coupun', coupunSchema);

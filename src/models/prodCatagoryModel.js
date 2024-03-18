@@ -1,7 +1,7 @@
-const mongoose = require('mongoose'); // Erase if already required
+import { Schema, model } from 'mongoose'; // Erase if already required
 
 // Declare the Schema of the Mongo model
-var prodCatagorySchema = new mongoose.Schema({
+var prodCatagorySchema = new Schema({
     title:{
         type:String,
         required:true,
@@ -12,4 +12,4 @@ var prodCatagorySchema = new mongoose.Schema({
 },{timestamps:true});
 
 //Export the model
-module.exports = mongoose.model('ProdCatagory', prodCatagorySchema);
+export default model('ProdCatagory', prodCatagorySchema);

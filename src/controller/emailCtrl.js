@@ -1,8 +1,8 @@
-const nodemailer = require("nodemailer");
-const asyncHandler = require("express-async-handler");
+import { createTransport } from "nodemailer";
+import asyncHandler from "express-async-handler";
 
 const sendMail = asyncHandler(async(data,req,res)=>{
-    let transporter = nodemailer.createTransport({
+    let transporter = createTransport({
         host: "smtp.gmail.com",
         port: 587,
         secure: false, // true for 465, false for other ports
@@ -29,4 +29,4 @@ const sendMail = asyncHandler(async(data,req,res)=>{
       // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 });
 
-module.exports = sendMail;
+export default sendMail;

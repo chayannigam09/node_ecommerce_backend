@@ -1,8 +1,8 @@
-const Catagory = require('../models/blogCatagoryModel');
-const asyncHandler = require("express-async-handler");
-const validMongoId = require("../utils/validateMongodbId");
+import Catagory from "../models/blogCatagoryModel.js";
+import asyncHandler from "express-async-handler";
+import validMongoId from "../utils/validateMongodbId.js";
 
-const createCatagory = asyncHandler(async(req,res)=>{
+export const createCatagory = asyncHandler(async(req,res)=>{
     try{
         const newCatagory = await Catagory.create(req.body);
         res.json(newCatagory);
@@ -11,7 +11,7 @@ const createCatagory = asyncHandler(async(req,res)=>{
     }
 });
 
-const updateCatagory = asyncHandler(async(req,res)=>{
+export const updateCatagory = asyncHandler(async(req,res)=>{
     const id = req.params.id;
     validMongoId(id)
     try{
@@ -25,7 +25,7 @@ const updateCatagory = asyncHandler(async(req,res)=>{
     }
 });
 
-const getaCatagory = asyncHandler(async(req,res)=>{
+export const getaCatagory = asyncHandler(async(req,res)=>{
     validMongoId(req.params.id)
     try{
         const findCatagory = await Catagory.findById(req.params.id);
@@ -35,7 +35,7 @@ const getaCatagory = asyncHandler(async(req,res)=>{
     }
 });
 
-const getAllCatagory = asyncHandler(async(req,res)=>{
+export const getAllCatagory = asyncHandler(async(req,res)=>{
     try{
         const allCatagory = await Catagory.find();
         res.json({allCatagory})
@@ -44,7 +44,7 @@ const getAllCatagory = asyncHandler(async(req,res)=>{
     }
 });
 
-const deleteCatagory = asyncHandler(async(req,res)=>{
+export const deleteCatagory = asyncHandler(async(req,res)=>{
     const id = req.params.id;
     validMongoId(id)
     try{
@@ -58,4 +58,4 @@ const deleteCatagory = asyncHandler(async(req,res)=>{
     }
 });
 
-module.exports = { createCatagory, updateCatagory,deleteCatagory, getAllCatagory, getaCatagory }
+// export default { createCatagory, updateCatagory,deleteCatagory, getAllCatagory, getaCatagory }

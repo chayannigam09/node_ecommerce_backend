@@ -1,12 +1,12 @@
-const Product = require("../models/productModel");
-const User = require("../models/userModel");
-const asyncHandler = require("express-async-handler");
-const slugify = require("slugify");
-const validMongoId = require("../utils/validateMongodbId");
-const cloudinaryUploading = require("../utils/cloudinary");
-const fs = require("fs");
+import Product from "../models/productModel.js";
+import User from "../models/userModel.js";
+import asyncHandler from "express-async-handler";
+import slugify from "slugify";
+import validMongoId from "../utils/validateMongodbId.js";
+import cloudinaryUploading from "../utils/cloudinary.js";
+import { unlinkSync } from "fs";
 //create products
-const createProduct = asyncHandler(async (req, res) => {
+export const createProduct = asyncHandler(async (req, res) => {
   try {
     if (req.body.title) {
       req.body.slug = slugify(req.body.title);
@@ -22,7 +22,7 @@ const createProduct = asyncHandler(async (req, res) => {
 });
 
 //Get products by id
-const getaProduct = asyncHandler(async (req, res) => {
+export const getaProduct = asyncHandler(async (req, res) => {
   try {
     const findProduct = await Product.findById(req.params.id);
     res.json({
@@ -35,7 +35,7 @@ const getaProduct = asyncHandler(async (req, res) => {
 });
 
 //Get all products
-const getAllProduct = asyncHandler(async (req, res) => {
+export const getAllProduct = asyncHandler(async (req, res) => {
   try {
     //Filtering
     const queryObj = { ...req.query };
@@ -80,7 +80,7 @@ const getAllProduct = asyncHandler(async (req, res) => {
 });
 
 //update product
-const updateProduct = asyncHandler(async (req, res) => {
+export const updateProduct = asyncHandler(async (req, res) => {
   const id = req.params.id;
   try {
     if (req.body.title) {
@@ -99,7 +99,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 });
 
 //delete product
-const deleteProduct = asyncHandler(async (req, res) => {
+export const deleteProduct = asyncHandler(async (req, res) => {
   const id = req.params.id;
   try {
     if (req.body.title) {
@@ -115,7 +115,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
   }
 });
 
-const addToWishlist = asyncHandler(async (req, res) => {
+export const addToWishlist = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   const { prodId } = req.body;
   try {
@@ -145,7 +145,7 @@ const addToWishlist = asyncHandler(async (req, res) => {
   }
 });
 
-const rating = asyncHandler(async (req, res) => {
+export const rating = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   const { star, prodId, comment } = req.body;
   try {
@@ -187,7 +187,7 @@ const rating = asyncHandler(async (req, res) => {
   }
 });
 
-const uploadImages = asyncHandler(async (req, res) => {
+export const uploadImages = asyncHandler(async (req, res) => {
   const {id} = req.params;
   validMongoId(id);
   try{
@@ -198,7 +198,7 @@ const uploadImages = asyncHandler(async (req, res) => {
       const {path} = file;
       const newpath = await uploader(path);
       urls.push(newpath);
-      fs.unlinkSync(path);
+      unlinkSync(path);
     }
     const findProduct = await Product.findByIdAndUpdate(id,{images:urls.map((file)=>{return file}),},{new:true});
     res.json(findProduct);
@@ -207,13 +207,13 @@ const uploadImages = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = {
-  createProduct,
-  getaProduct,
-  getAllProduct,
-  updateProduct,
-  deleteProduct,
-  addToWishlist,
-  rating,
-  uploadImages
-};
+// export default {
+//   createProduct,
+//   getaProduct,
+//   getAllProduct,
+//   updateProduct,
+//   deleteProduct,
+//   addToWishlist,
+//   rating,
+//   uploadImages
+// };

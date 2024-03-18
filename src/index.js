@@ -1,21 +1,23 @@
-const bodyParser = require('body-parser');
-const express = require('express');
-const dbConnect = require("./config/dbConnect");
-const { notFound, errorHandler } = require('./middlewares/errHandler');
+import pkg from 'body-parser';
+const { json, urlencoded } = pkg;
+import express from 'express';
+import dbConnect from "./config/dbConnect.js";
+import { notFound, errorHandler } from './middlewares/errHandler.js';
 const app = express()
-const dotenv = require('dotenv').config();
+import { config as dotenvConfig } from 'dotenv';
+dotenvConfig();
 const PORT = process.env.PORT||4000;
-const authRouter = require("./routes/authroute")
-const productRouter = require("./routes/productRoute")
-const blogRouter = require("./routes/blogRoute")
-const catagoryRouter = require("./routes/prodCatagoryRoute")
-const blogCatagoryRouter = require("./routes/blogCatagoryRoute")
-const brandRouter = require("./routes/brandRoute")
-const coupunRouter = require("./routes/coupunRoute")
-const cookieParser = require('cookie-parser');
-const morgan = require("morgan");
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('../swagger.json');
+import authRouter from "./routes/authroute.js";
+import productRouter from "./routes/productRoute.js";
+import blogRouter from "./routes/blogRoute.js";
+import catagoryRouter from "./routes/prodCatagoryRoute.js";
+import blogCatagoryRouter from "./routes/blogCatagoryRoute.js";
+import brandRouter from "./routes/brandRoute.js";
+import coupunRouter from "./routes/coupunRoute.js";
+import cookieParser from 'cookie-parser';
+import morgan from "morgan";
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from '../swagger.json' assert { type: 'json' };
 dbConnect();
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -30,17 +32,10 @@ app.use((req, res, next) => {
     }
   });
 app.use(morgan("dev"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}))
+app.use(json());
+app.use(urlencoded({extended:false}))
 app.use(cookieParser());
-app.use("/", (req, res) => {
-  const htmlContent = `
-  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <h1>Server Running</h1>
-  </div>
-`;
-  res.send(htmlContent);
-});
+
 app.use("/api/user",authRouter);
 app.use("/api/product",productRouter);
 app.use("/api/blog",blogRouter);
@@ -50,6 +45,14 @@ app.use("/api/brand",brandRouter);
 app.use("/api/coupun",coupunRouter);
 
 app.use("/api-docs",swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.use("/", (req, res) => {
+  const htmlContent = `
+  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <h1>Server Running</h1>
+  </div>
+`;
+  res.send(htmlContent);
+});
 app.use(notFound);
 app.use(errorHandler);
 app.listen(PORT, ()=>{

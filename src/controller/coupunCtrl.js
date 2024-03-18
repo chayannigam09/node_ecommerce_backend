@@ -1,8 +1,8 @@
-const Coupun = require('../models/coupunModel');
-const asyncHandler = require("express-async-handler");
-const validMongoId = require("../utils/validateMongodbId");
+import Coupun from '../models/coupunModel.js';
+import asyncHandler from "express-async-handler";
+import validMongoId from "../utils/validateMongodbId.js";
 
-const createCoupun = asyncHandler(async(req,res)=>{
+export const createCoupun = asyncHandler(async(req,res)=>{
     try{
         const newCoupun = await Coupun.create(req.body);
         res.json(newCoupun);
@@ -11,7 +11,7 @@ const createCoupun = asyncHandler(async(req,res)=>{
     }
 });
 
-const getAllCoupun = asyncHandler(async(req,res)=>{
+export const getAllCoupun = asyncHandler(async(req,res)=>{
     try{
         const allCoupun = await Coupun.find();
         res.json({allCoupun})
@@ -20,7 +20,7 @@ const getAllCoupun = asyncHandler(async(req,res)=>{
     }
 });
 
-const updateCoupun = asyncHandler(async(req,res)=>{
+export const updateCoupun = asyncHandler(async(req,res)=>{
     const id = req.params.id;
     validMongoId(id)
     try{
@@ -34,7 +34,7 @@ const updateCoupun = asyncHandler(async(req,res)=>{
     }
 });
 
-const deleteCoupun = asyncHandler(async(req,res)=>{
+export const deleteCoupun = asyncHandler(async(req,res)=>{
     const id = req.params.id;
     validMongoId(id)
     try{
@@ -48,4 +48,4 @@ const deleteCoupun = asyncHandler(async(req,res)=>{
     }
 });
 
-module.exports = { createCoupun, getAllCoupun, deleteCoupun, updateCoupun }
+// export default { createCoupun, getAllCoupun, deleteCoupun, updateCoupun }

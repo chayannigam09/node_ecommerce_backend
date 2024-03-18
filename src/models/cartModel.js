@@ -1,11 +1,11 @@
-const mongoose = require('mongoose'); // Erase if already required
+import { Schema, model } from 'mongoose'; // Erase if already required
 
 // Declare the Schema of the Mongo model
-var cartSchema = new mongoose.Schema({
+var cartSchema = new Schema({
     products:[
         {
             product:{
-                type:mongoose.Schema.Types.ObjectId,
+                type:Schema.Types.ObjectId,
                 ref:"Product"
             },
             count:Number,
@@ -16,10 +16,10 @@ var cartSchema = new mongoose.Schema({
     cartTotal:Number,
     totalAfterDiscount:Number,
     orderBy:{
-        type:mongoose.Schema.Types.ObjectId,
+        type:Schema.Types.ObjectId,
         ref:"User",
     },
 },{timestamps:true});
 
 //Export the model
-module.exports = mongoose.model('Cart', cartSchema);
+export default model('Cart', cartSchema);
