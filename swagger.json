@@ -6,7 +6,7 @@
     "security": [{ "bearerAuth": [] }],
     "description": "Node Ecommerce Application APIs"
   },
-  "host": "https://node-ecommerce-backend-51eb.onrender.com/api/",
+  "host": "node-ecommerce-backend-51eb.onrender.com/api/",
   "basePath": "/",
   "schemes": ["http","https"],
   "securityDefinitions": {
